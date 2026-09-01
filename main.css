@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	font-family: "Roboto";
+	color: rgba(255, 255, 255, 0.8);
+}
+
+body {
+	background-color: #0a0a0a;
+	color: white;
+}
+
+#main {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	background-color: #101010;
+	border-radius: 5px;
+	display: inline-block;
+	padding: 0px;
+	padding-top: 10px;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.8);
+	border: 2px solid rgba(32, 95, 115, 0.5);
+	transition: 0.25s all;
+	cursor: pointer;
+	margin: 0;
+}
+#main > h3 {
+	font-family: "Cal Sans", sans-serif;
+}
+#main > button {
+	cursor: pointer;
+	width: 50px;
+	border: 0;
+	border-top: 2px solid rgba(32, 95, 115, 0.5);
+	background-color: transparent;
+	color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+	margin: 0;
+	transition: 0.25s all;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#main > button:nth-of-type(1) {
+	border-right: 1px solid rgba(32, 95, 115, 0.5);
+}
+#main > button:nth-of-type(2) {
+	border-left: 1px solid rgba(32, 95, 115, 0.5);
+}
+#main:hover, #main:hover > button {
+	border-color: rgba(32, 95, 115, 1);
+}
+#main > button:hover {
+	background-color: #1a1a1a;
+}
+
+#banner {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	background-color: rgba(16, 47.5, 57.5, 1);
+	max-width: calc(100% - 183px);
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 5px;
+}
+#banner * {
+	font-family: "Cal Sans";
+}
