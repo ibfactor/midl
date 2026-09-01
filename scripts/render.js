@@ -7,11 +7,16 @@ function render(r1, r3) {
 			}
 		});
 
-		document.getElementById("content").innerHTML +=
-			`<div class="game-icon"><p>${item.title}</p><p></p><p style="background-image:url('/images/${img_link}');"></p></div>`
-		;
+		const elem = document.createElement("div");
+
+		elem.classList.add("game-icon");
+		elem.innerHTML = `<p>${item.title}</p><p></p><p style="background-image:url('/images/${img_link}');"></p>`;
+
+		document.getElementById("content").appendChild(elem);
 	});
 }
+
+window.db = [];
 
 async function getDB() {
 	const r0 = await fetch("/database.json");
@@ -19,6 +24,8 @@ async function getDB() {
 
 	const r2 = await fetch("/images.txt");
 	const r3 = await r2.text();
+
+	window.db = r1;
 
 	render(r1, r3.split("\n"));
 }

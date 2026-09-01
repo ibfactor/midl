@@ -3,6 +3,7 @@
 	<head>
 		<title>MIDL</title>
 		<link rel="stylesheet" href="/main.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 	</head>
 	<body class="dark">
 
@@ -14,12 +15,20 @@
 			
 			<div id="main">
 				<h3>MIDL</h3>
-				<button><i class="fas fa-house"></i></button><button><i class="fas fa-magnifying-glass"></i></button>
+				<button id="home_button"><i class="fas fa-house"></i></button><button><i class="fas fa-magnifying-glass"></i></button>
 			</div>
 			
 		</div>
 
-		<script src="https://kit.fontawesome.com/943cbe16e5.js" crossorigin="anonymous"></script>
+		<div id="search">
+			<span><i class="fas fa-magnifying-glass"></i></span>
+			<input type="text" placeholder="Start typing...">
+			<div id="results">
+				<hr>
+			</div>
+		</div>
+
 		<script src="/scripts/render.js"></script>
+		<script src="/scripts/styles.js"></script>
 	</body>
 </html>
