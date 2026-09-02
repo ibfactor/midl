@@ -19,7 +19,7 @@ function render(r1, r3) {
 			document.getElementById("loading_screen").classList.add("active");
 
 			document.querySelector("#player iframe").contentWindow.player.load({
-			    url: "/friv_games/" + item.name,
+			    url: "https://cdn.midl.ibfr.org/" + item.name,
 			    allowScriptAccess: false
 			});
 
