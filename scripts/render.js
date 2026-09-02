@@ -22,6 +22,11 @@ function render(r1, r3) {
 				document.getElementById("game").classList.add("active-pane");
 				document.getElementById("top").innerText = elem.innerText;
 			}, 2000);
+
+			document.querySelector("#player iframe").contentWindow.player.load({
+			    url: "/friv_games/" + item.name,
+			    allowScriptAccess: false
+			});
 		});
 	});
 }
