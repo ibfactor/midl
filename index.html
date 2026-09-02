@@ -15,7 +15,7 @@
 			
 			<div id="main">
 				<h3>MIDL</h3>
-				<button id="home_button"><i class="fas fa-house"></i></button><button><i class="fas fa-magnifying-glass"></i></button>
+				<button id="home_button"><i class="fas fa-house"></i></button><button id="search_button"><i class="fas fa-magnifying-glass"></i></button>
 			</div>
 			
 		</div>
@@ -26,6 +26,25 @@
 			<div id="results">
 				<hr>
 			</div>
+		</div>
+
+		<div id="game">
+			<div id="player">
+				<h6 id="top"></h6>
+				<iframe src="/player"></iframe>
+				<div id="controls">
+					<button><i class="fas fa-play"></i>&nbsp;&nbsp;Play</button><button><i class="fas fa-expand"></i>&nbsp;&nbsp;Fullscreen</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="loading_screen">
+			<p></p>
+			<div>
+				<img src="/wave-spinner.gif">
+				<p>Spinning up great things...</p>
+			</div>
+			<p></p>
 		</div>
 
 		<script src="/scripts/render.js"></script>

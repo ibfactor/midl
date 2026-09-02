@@ -13,6 +13,16 @@ function render(r1, r3) {
 		elem.innerHTML = `<p>${item.title}</p><p></p><p style="background-image:url('/images/${img_link}');"></p>`;
 
 		document.getElementById("content").appendChild(elem);
+
+		elem.addEventListener("click", () => {
+			elem.classList.add("active-game");
+			document.getElementById("loading_screen").classList.add("active");
+			setTimeout(() => {
+				document.getElementById("loading_screen").classList.remove("active");
+				document.getElementById("game").classList.add("active-pane");
+				document.getElementById("top").innerText = elem.innerText;
+			}, 2000);
+		});
 	});
 }
 

@@ -12,6 +12,23 @@ document.getElementById("home_button").addEventListener("click", () => {
 	alert("Home!");
 });
 
+document.getElementById("search_button").addEventListener("click", () => {
+	if (document.getElementById("search").style.display == "block") {
+
+		document.getElementById("search").style.opacity = "0";
+		setTimeout(() => {
+			document.getElementById("search").style.display = "none";
+			searchInput.focus();
+		}, 200);
+
+	}
+	document.getElementById("search").style.display = "block";
+	setTimeout(() => {
+		document.getElementById("search").style.opacity = "1";
+		searchInput.focus();
+	}, 200);
+});
+
 function search(query) {
 	document.getElementById("results").innerHTML = "<hr>";
 	query = query.toLowerCase();
@@ -26,7 +43,7 @@ function search(query) {
 		}
 	});
 
-	document.querySelectorAll("#results > div").forEach((elem) => {
+	document.querySelectorAll("#results > div").forEach((elem, index) => {
 		elem.addEventListener("mouseover", () => {
 			document.querySelectorAll("#results > div").forEach((elem2) => {
 				elem2.classList.remove("active");
@@ -36,7 +53,17 @@ function search(query) {
 	});
 }
 
+function handleSearchCloser(event) {
+	if (event.target.closest("#search") || event.target.closest("#search_button")) return;
+	document.getElementById("search").style.opacity = "0";
+	setTimeout(() => {
+		document.getElementById("search").style.display = "none";
+		searchInput.focus();
+	}, 200);
+}
+
 const searchInput = document.querySelector("#search > input");
+document.body.addEventListener("click", handleSearchCloser);
 searchInput.addEventListener("keyup", () => {
 	if (searchInput.value) {
 		searchInput.parentElement.classList.add("active");
