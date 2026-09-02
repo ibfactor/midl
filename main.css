@@ -397,10 +397,16 @@ body:has(#game.active-pane) {
 	transition: all 0.2s;
 	background-color: rgba(255, 255, 255, 0);
 }
-#controls button:nth-last-of-type(1) {
+#controls button:nth-last-of-type(2) {
 	border-right: 0px;
+}
+#controls button:nth-last-of-type(1) {
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 #controls button:hover {
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
+#controls button:nth-last-of-type(1), #controls button:nth-last-of-type(2) {
+	float: right;
+}
