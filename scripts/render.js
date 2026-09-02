@@ -14,19 +14,32 @@ function render(r1, r3) {
 
 		document.getElementById("content").appendChild(elem);
 
-		elem.addEventListener("click", () => {
+		elem.addEventListener("click", async () => {
 			elem.classList.add("active-game");
 			document.getElementById("loading_screen").classList.add("active");
-			setTimeout(() => {
-				document.getElementById("loading_screen").classList.remove("active");
-				document.getElementById("game").classList.add("active-pane");
-				document.getElementById("top").innerText = elem.innerText;
-			}, 2000);
 
 			document.querySelector("#player iframe").contentWindow.player.load({
 			    url: "/friv_games/" + item.name,
 			    allowScriptAccess: false
 			});
+
+			await new Promise((resolve) => {
+                const handler = (event) => {
+                    if (event.data?.type === "ruffle-loaded") {
+                        window.removeEventListener("message", handler);
+                        resolve();
+                    }
+                };
+
+                window.addEventListener("message", handler);
+            });
+
+			//setTimeout(() => {
+				document.getElementById("loading_screen").classList.remove("active");
+				document.getElementById("game").classList.add("active-pane");
+				document.getElementById("top").innerText = elem.innerText;
+			//}, 2000);
+
 		});
 	});
 }
@@ -42,7 +55,7 @@ async function getDB() {
 
 	window.db = r1;
 
-	render(r1, r3.split("\n"));
+	render(r1, r3.replaceAll("\r", "\n").split("\n"));
 }
 
 getDB();

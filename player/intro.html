@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Intro</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+			body {
+				background-color: black;
+				transition: all 1s;
+			}
+			#center {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+				font-family: "Cal Sans";
+				color: rgba(255, 255, 255, 0.8);
+			}
+			h1 {
+				margin-bottom: 0;
+			}
+			p {
+				margin-top: 0;
+				width: 0;
+				overflow: hidden;
+				transition: all 1s;
+				white-space: nowrap;
+			}
+
+			@keyframes shake {
+			  0% { transform: translate(1px, 1px) rotate(0deg); }
+			  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+			  20% { transform: translate(-3px, 0px) rotate(1deg); }
+			  30% { transform: translate(3px, 2px) rotate(0deg); }
+			  40% { transform: translate(1px, -1px) rotate(1deg); }
+			  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+			  60% { transform: translate(-3px, 1px) rotate(0deg); }
+			  70% { transform: translate(3px, 1px) rotate(-1deg); }
+			  80% { transform: translate(-1px, -1px) rotate(1deg); }
+			  90% { transform: translate(1px, 2px) rotate(0deg); }
+			  100% { transform: translate(1px, -2px) rotate(-1deg); }
+			}
+
+			#center.shake h1, #center.shake p {
+				animation: shake 0.5s;
+				animation-iteration-count: infinite;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<audio>
+		    <source src="/intro.wav" />     
+		</audio>
+
+		<div id="center">
+			<h1>MIDL</h1>
+			<p>where the world comes to play</p>
+		</div>
+
+		<script>
+			setTimeout(() => {
+				document.querySelector("p").style.width = "230px";
+			}, 3000);
+			setTimeout(() => {
+				document.querySelector("#center").classList.add("shake");
+				document.querySelector("audio").play();
+				setTimeout(() => {
+					document.querySelector("#center").classList.remove("shake");
+				}, 800);
+				setTimeout(() => {
+					document.body.style.opacity = "0";
+					document.body.style.backgroundColor = "transparent";
+				}, 1800);
+			}, 4000);
+		</script>
+	</body>
+</html>

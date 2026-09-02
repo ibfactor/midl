@@ -9,7 +9,14 @@ banner.addEventListener("mouseenter", () => {
 });
 
 document.getElementById("home_button").addEventListener("click", () => {
-	alert("Home!");
+	document.getElementById("loading_screen").classList.add("active");
+	setTimeout(() => {
+		document.getElementById("loading_screen").classList.remove("active");
+		document.getElementById("game").classList.remove("active-pane");
+		document.getElementById("top").innerText = "";
+
+		document.querySelector("#player iframe").contentWindow.location.reload();
+	}, 2000);
 });
 
 document.getElementById("search_button").addEventListener("click", () => {
