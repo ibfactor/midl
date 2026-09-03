@@ -1,3 +1,16 @@
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 const playerFrame = document.querySelector("#player iframe");
 
 const playpause_btn = document.getElementById("playpause_btn");
@@ -49,11 +62,22 @@ load_btn.addEventListener("click", () => {
 const cloudBtn = document.getElementById("saveState").querySelectorAll("button")[0];
 const downloadBtn = document.getElementById("saveState").querySelectorAll("button")[1];
 
+function handleSave() {
+		download("save.midl", JSON.stringify(localStorage));
+		localStorage.clear();
+		playerFrame.removeEventListener("load", handleSave);
+
+		document.querySelector("#player iframe").contentWindow.player.load({
+		    url: "https://cdn.midl.ibfr.org/" + window.currentItem,
+		    allowScriptAccess: false
+		});
+}
+
 downloadBtn.addEventListener("click", () => {
 	downloadBtn.classList.add("loading");
 	setTimeout(() => {
-			playerFrame.contentWindow.saveRuffleState();
-			playerFrame.contentWindow.downloadRuffleState();
+			playerFrame.contentWindow.location.reload();
+			playerFrame.addEventListener("load", handleSave);
 			downloadBtn.classList.remove("loading");
 			document.getElementById("saveState").classList.remove("active-modal");
 	}, 1000);
@@ -62,11 +86,25 @@ downloadBtn.addEventListener("click", () => {
 const cloudBtnUP = document.getElementById("loadState").querySelectorAll("button")[0];
 const uploadBtn = document.getElementById("loadState").querySelectorAll("button")[1];
 
+function handleLoad(event) {
+		const reader = new FileReader();
+	  reader.onload = (evt) => {
+	  	const ls = JSON.parse(evt.target.result);
+	  	Object.keys(ls).forEach((key) => {
+	  		localStorage.setItem(key, ls[key]);
+	  	});
+			setTimeout(() => {
+					uploadBtn.classList.remove("loading");
+					document.getElementById("loadState").classList.remove("active-modal");
+			}, 1000);
+	  };
+	  const text = reader.readAsText(event.target.files[0]);
+}
+
 uploadBtn.addEventListener("click", () => {
 	uploadBtn.classList.add("loading");
-	playerFrame.contentWindow.uploadRuffleState();
-	setTimeout(() => {
-			uploadBtn.classList.remove("loading");
-			document.getElementById("saveState").classList.remove("active-modal");
-	}, 1000);
+	document.getElementById("fileInput").click();
 });
+
+document.getElementById("fileInput").addEventListener("change", handleLoad);
+

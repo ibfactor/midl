@@ -17,7 +17,7 @@ function render(r1, r3) {
 		elem.addEventListener("click", async () => {
 			elem.classList.add("active-game");
 			document.getElementById("loading_screen").classList.add("active");
-
+			window.currentItem = item.name;
 			document.querySelector("#player iframe").contentWindow.player.load({
 			    url: "https://cdn.midl.ibfr.org/" + item.name,
 			    allowScriptAccess: false
