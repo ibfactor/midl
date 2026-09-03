@@ -410,3 +410,77 @@ body:has(#game.active-pane) {
 #controls button:nth-last-of-type(1), #controls button:nth-last-of-type(2) {
 	float: right;
 }
+
+
+#saveState, #loadState {
+	position: fixed;
+	/*top: 50%;*/
+	top: -100%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background-color: rgba(50, 50, 50, 0.5);
+	backdrop-filter: blur(8px);
+	padding: 15px;
+	margin: 0;
+	border-radius: 5px;
+	max-width: 300px;
+	width: 90%;
+	opacity: 0;
+	transition: top 0.5s, opacity 1s;
+}
+#saveState.active-modal, #loadState.active-modal {
+	top: 50%;
+	opacity: 1;
+}
+#saveState h6, #loadState h6 {
+	font-size: 15px;
+	margin: 0;
+	font-family: "Cal Sans";
+	text-align: left;
+	margin-bottom: 20px;
+}
+#saveState button, #loadState button {
+	font-size: 18px;
+	background-color: transparent;
+	width: 100%;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	padding: 20px;
+	cursor: pointer;
+	transition: all 0.2s;
+	position: relative;
+}
+#saveState button:nth-of-type(1), #loadState button:nth-of-type(1) {
+	margin-bottom: 5px;
+}
+#saveState button:nth-of-type(2), #loadState button:nth-of-type(2) {
+	margin-top: 5px;
+}
+#saveState button i, #loadState button i {
+	margin-bottom: 5px;
+}
+#saveState button:hover, #loadState button:hover {
+	background-color: rgba(255, 255, 255, 0.08);
+}
+#saveState button span, #loadState button span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: all 0.2s;
+}
+#saveState button strong, #loadState button strong {
+	font-weight: 400;
+}
+#saveState button span i, #loadState button span i {
+	--fa-animation-duration: 1s;
+}
+#saveState button.loading span, #loadState button.loading span {
+	opacity: 1;
+}
+#saveState button.loading *:not(span, span *), #loadState button.loading *:not(span, span *) {
+	opacity: 0;
+}
+

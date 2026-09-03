@@ -42,9 +42,74 @@
 			  100% { transform: translate(1px, -2px) rotate(-1deg); }
 			}
 
-			#center.shake h1, #center.shake p {
+			@keyframes shake-modified-2 {
+			    0%   { transform: translate(1px, 1px) rotate(130deg) scaleY(-1); }
+			    10%  { transform: translate(-1px, -2px) rotate(129deg) scaleY(-1); }
+			    20%  { transform: translate(-3px, 0px) rotate(131deg) scaleY(-1); }
+			    30%  { transform: translate(3px, 2px) rotate(130deg) scaleY(-1); }
+			    40%  { transform: translate(1px, -1px) rotate(131deg) scaleY(-1); }
+			    50%  { transform: translate(-1px, 2px) rotate(129deg) scaleY(-1); }
+			    60%  { transform: translate(-3px, 1px) rotate(130deg) scaleY(-1); }
+			    70%  { transform: translate(3px, 1px) rotate(129deg) scaleY(-1); }
+			    80%  { transform: translate(-1px, -1px) rotate(131deg) scaleY(-1); }
+			    90%  { transform: translate(1px, 2px) rotate(130deg) scaleY(-1); }
+			    100% { transform: translate(1px, -2px) rotate(129deg) scaleY(-1); }
+			}
+
+			@keyframes shake-modified-1 {
+			    0%   { transform: translate(1px, 1px) rotate(-35deg); }
+			    10%  { transform: translate(-1px, -2px) rotate(-36deg); }
+			    20%  { transform: translate(-3px, 0px) rotate(-34deg); }
+			    30%  { transform: translate(3px, 2px) rotate(-35deg); }
+			    40%  { transform: translate(1px, -1px) rotate(-34deg); }
+			    50%  { transform: translate(-1px, 2px) rotate(-36deg); }
+			    60%  { transform: translate(-3px, 1px) rotate(-35deg); }
+			    70%  { transform: translate(3px, 1px) rotate(-36deg); }
+			    80%  { transform: translate(-1px, -1px) rotate(-34deg); }
+			    90%  { transform: translate(1px, 2px) rotate(-35deg); }
+			    100% { transform: translate(1px, -2px) rotate(-36deg); }
+			}
+
+			#center.shake h1, #center.shake p{
 				animation: shake 0.5s;
 				animation-iteration-count: infinite;
+			}
+
+			#center.shake img:nth-of-type(2) {
+				animation: shake-modified-2 0.5s;
+				animation-iteration-count: infinite;
+			}
+			#center.shake img:nth-of-type(1) {
+				animation: shake-modified-1 0.5s;
+				animation-iteration-count: infinite;
+			}
+
+			#center img {
+				position: absolute;
+				top: 0;
+				right: -30px;
+				width: 30px;
+				transform: rotate(-35deg);
+			}
+
+			#center img:nth-of-type(1) {
+				position: absolute;
+				top: 0;
+				right: -30px;
+				width: 30px;
+				transform: rotate(-35deg);
+				transition: all 1s;
+				opacity: 0;
+			}
+			#center img:nth-of-type(2) {
+				position: absolute;
+				bottom: 0;
+				top: auto;
+				left: -33px;
+				width: 30px;
+				transform: rotate(130deg) scaleY(-1);
+				transition: all 1s;
+				opacity: 0;
 			}
 
 		</style>
@@ -58,6 +123,8 @@
 		<div id="center">
 			<h1>MIDL</h1>
 			<p>where the world comes to play</p>
+			<img src="/shake.png">
+			<img src="/shake.png">
 		</div>
 
 		<script>
@@ -67,8 +134,12 @@
 			setTimeout(() => {
 				document.querySelector("#center").classList.add("shake");
 				document.querySelector("audio").play();
+				document.querySelectorAll("#center img")[0].style.opacity = "1";
+				document.querySelectorAll("#center img")[1].style.opacity = "1";
 				setTimeout(() => {
 					document.querySelector("#center").classList.remove("shake");
+					document.querySelectorAll("#center img")[0].style.opacity = "0";
+					document.querySelectorAll("#center img")[1].style.opacity = "0";
 				}, 800);
 				setTimeout(() => {
 					document.body.style.opacity = "0";

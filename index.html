@@ -33,8 +33,22 @@
 				<h6 id="top"></h6>
 				<iframe src="/player"></iframe>
 				<div id="controls">
-					<button id="playpause_btn"><i class="fas fa-pause"></i>&nbsp;&nbsp;Pause</button><button id="fullscreen_btn"><i class="fas fa-expand"></i>&nbsp;&nbsp;Fullscreen</button><button id="fullscreen_btn"><i class="fas fa-download"></i>&nbsp;&nbsp;Load Save</button><button id="fullscreen_btn"><i class="fas fa-upload"></i>&nbsp;&nbsp;Save</button>
+					<button id="playpause_btn"><i class="fas fa-pause"></i>&nbsp;&nbsp;<span id="playpause_text">Pause</span></button><button id="fullscreen_btn"><i class="fas fa-expand"></i>&nbsp;&nbsp;Fullscreen</button><button id="load_btn"><i class="fas fa-download"></i>&nbsp;&nbsp;Load Save</button><button id="save_btn"><i class="fas fa-upload"></i>&nbsp;&nbsp;Save</button>
 				</div>
+			</div>
+
+			<div id="saveState">
+				<h6>Save State</h6>
+				<button><i class="fas fa-cloud"></i><br><strong>Save to the Cloud</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
+				<br>or<br>
+				<button><i class="fas fa-hard-drive"></i><br><strong>Download Save File</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
+			</div>
+
+			<div id="loadState">
+				<h6>Load State</h6>
+				<button><i class="fas fa-cloud"></i><br><strong>Load from the Cloud</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
+				<br>or<br>
+				<button><i class="fas fa-hard-drive"></i><br><strong>Upload Save File</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
 			</div>
 		</div>
 
