@@ -429,6 +429,11 @@ body:has(#game.active-pane) {
 	opacity: 0;
 	transition: top 0.5s, opacity 1s;
 }
+#saveState p, #loadState p {
+	text-align: left;
+	font-size: 11px;
+	margin-top: 0;
+}
 #saveState.active-modal, #loadState.active-modal {
 	top: 50%;
 	opacity: 1;

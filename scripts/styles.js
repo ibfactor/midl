@@ -51,6 +51,9 @@ function search(query) {
 	});
 
 	document.querySelectorAll("#results > div").forEach((elem, index) => {
+		elem.addEventListener("click", () => {
+			document.querySelector(`[data-id="${elem.innerText.trim()}"]`).click();
+		});
 		elem.addEventListener("mouseover", () => {
 			document.querySelectorAll("#results > div").forEach((elem2) => {
 				elem2.classList.remove("active");

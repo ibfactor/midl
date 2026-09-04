@@ -10,6 +10,7 @@ function render(r1, r3) {
 		const elem = document.createElement("div");
 
 		elem.classList.add("game-icon");
+		elem.setAttribute("data-id", item.title)
 		elem.innerHTML = `<p>${item.title}</p><p></p><p style="background-image:url('/images/${img_link}');"></p>`;
 
 		document.getElementById("content").appendChild(elem);

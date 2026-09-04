@@ -40,15 +40,13 @@
 			<div id="saveState">
 				<h6>Save State</h6>
 				<p>**Please ensure you have saved your progress within the game, this menu simply downloads the save file.</p>
-				<button><i class="fas fa-cloud"></i><br><strong>Save to the Cloud</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
-				<br>or<br>
+				<button style="display: none;"><i class="fas fa-cloud"></i><br><strong>Save to the Cloud</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
 				<button><i class="fas fa-hard-drive"></i><br><strong>Download Save File</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
 			</div>
 
 			<div id="loadState">
 				<h6>Load State</h6>
-				<button><i class="fas fa-cloud"></i><br><strong>Load from the Cloud</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
-				<br>or<br>
+				<button style="display: none;"><i class="fas fa-cloud"></i><br><strong>Load from the Cloud</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
 				<button><i class="fas fa-hard-drive"></i><br><strong>Upload Save File</strong><span><i class="fas fa-circle-notch fa-spin"></i></span></button>
 			</div>
 		</div>
@@ -62,7 +60,7 @@
 			<p></p>
 		</div>
 
-		<input id="fileInput" type="file" name="file" />
+		<input id="fileInput" type="file" name="file" style="opacity: 0;" />
 		
 		<script src="/scripts/render.js"></script>
 		<script src="/scripts/styles.js"></script>
