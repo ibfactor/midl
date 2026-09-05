@@ -1,3 +1,14 @@
+function showToast(title, msg) {
+	document.getElementById("toast").classList.add("active");
+	document.getElementById("toast").children[0].innerText = title;
+	document.getElementById("toast").children[1].innerText = msg;
+	document.getElementById("toast").classList.add(title.toLowerCase());
+	setTimeout(() => {
+		document.getElementById("toast").classList.remove("active");
+		document.getElementById("toast").classList.remove(title.toLowerCase());
+	}, 1600);
+}
+
 function render(r1, r3) {
 	r1.forEach((item) => {
 		var img_link = "";

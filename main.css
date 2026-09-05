@@ -311,7 +311,7 @@ body {
 	top: 0;
 }
 
-#game {
+#game, #account, #my_account {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -489,3 +489,181 @@ body:has(#game.active-pane) {
 	opacity: 0;
 }
 
+
+
+a:hover {
+	cursor: pointer;
+}
+
+.active-modal a {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+}
+
+
+#tag {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: rgba(20, 20, 20);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 15px;
+	width: auto;
+	border-radius: 5px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	z-index: 5;
+}
+#tag span {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #4a4a4a;
+	color: white;
+	text-align: center;
+	padding: 0px;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	border-radius: 50%;
+	margin: 0;
+}
+#tag i {
+	margin: 0;
+	padding: 0;
+}
+#tag p {
+	margin-left: 60px;
+	color: rgba(255, 255, 255, 0.7);
+}
+#tag button {
+	background-color: transparent;
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	padding: 10px;
+	cursor: pointer;
+	margin-left: 8px;
+	transition: all 0.2s;
+}
+#tag button:hover {
+	 background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+#login_modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(20, 20, 20);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 30px;
+	border-radius: 5px;
+	width: 300px;
+}
+h3 {
+	font-family: "Cal Sans";
+}
+#login_modal h3 {
+	text-align: center;
+}
+
+.input_group {
+	display: block;
+	position: relative;
+	transition: all 0.2s;
+	margin-bottom: 20px;
+}
+input {
+	width: calc(100% - 20px);
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	padding: 10px;
+	font-size: 18px;
+	transition: all 0.2s;
+}
+input:focus {
+	outline: 0;
+}
+input + label {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 10px;
+	color: rgba(255, 255, 255, 0.4);
+	pointer-events: none;
+	transition: all 0.2s;
+}
+input:focus + label, input:not(input:placeholder-shown) + label {
+	top: 0px;
+	left: 0;
+}
+.input_group:has(input:focus, input:not(input:placeholder-shown)) {
+	padding-top: 10px;
+}
+input::placeholder {
+	opacity: 0;
+}
+
+#login_modal button {
+	background-color: transparent;
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	padding: 10px;
+	cursor: pointer;
+	transition: all 0.2s;
+	width: 100%;
+}
+#login_modal button:hover {
+	 background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+#toast {
+	position: fixed;
+	right: -100%;
+	top: 10px;
+	background-color: rgba(20, 20, 20);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 15px;
+	width: auto;
+	border-radius: 5px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	z-index: 5;
+	transition: all 0.3s;
+}
+#toast.active {
+	right: 10px;
+	transition: all 0.3s;
+}
+#toast h1 {
+	font-size: 18px;
+	font-family: "Cal Sans";
+}
+#toast.failure {
+	background-color: rgba(40, 20, 20);
+}
+#toast.success {
+	background-color: rgba(20, 40, 20);
+}
+
+
+
+#my_account {
+	padding-left: 20px;
+}
+
+#save_files, #high_scores {
+	text-align: center;
+	padding: 20px;
+	width: calc(100% - 80px);
+	border: 1px dashed rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.03);
+	margin-bottom: 30px;
+	border-radius: 5px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}

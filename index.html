@@ -53,6 +53,36 @@
 			</div>
 		</div>
 
+		<div id="tag">
+			<span><i class="fas fa-user"></i></span> <p>You are currently logged out. <button id="signin_btn">Log in?</button></p>
+		</div>
+
+		<div id="account">
+			<div id="login_modal">
+				<h3>Log in or Create an Account</h3>
+				<div class="input_group">
+					<input type="text" id="username" placeholder="Username">
+					<label for="username">Username</label>
+				</div>
+				<div class="input_group">
+					<input type="password" id="password" placeholder="Password">
+					<label for="password">Password</label>
+				</div>
+
+				<button id="next_btn">NEXT <i class="fas fa-chevron-right"></i></button>
+			</div>
+		</div>
+
+		<div id="my_account"><br><br><br><br><br><br>
+			<h2>Welcome back, <span id="username_txt"></span>!</h2>
+			<div id="save_files">
+				<p>Your save files will be shown here once you save something.</p>
+			</div>
+			<div id="high_scores">
+				<p>Your highscores will be shown here once you log them.</p>
+			</div>
+		</div>
+
 		<div id="loading_screen">
 			<p></p>
 			<div>
@@ -62,10 +92,16 @@
 			<p></p>
 		</div>
 
+		<div id="toast">
+			<h1>Title</h1>
+			<p>Message</p>
+		</div>
+
 		<input id="fileInput" type="file" name="file" style="opacity: 0;" />
 		
 		<script src="/scripts/render.js"></script>
 		<script src="/scripts/styles.js"></script>
 		<script src="/scripts/player.js"></script>
+		<script src="/scripts/account.js"></script>
 	</body>
 </html>
