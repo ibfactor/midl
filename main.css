@@ -412,7 +412,7 @@ body:has(#game.active-pane) {
 }
 
 
-#saveState, #loadState {
+#saveState, #loadState, #saves {
 	position: fixed;
 	/*top: 50%;*/
 	top: -100%;
@@ -429,23 +429,23 @@ body:has(#game.active-pane) {
 	opacity: 0;
 	transition: top 0.5s, opacity 1s;
 }
-#saveState p, #loadState p {
+#saveState p, #loadState p, #saves p {
 	text-align: left;
 	font-size: 11px;
 	margin-top: 0;
 }
-#saveState.active-modal, #loadState.active-modal {
+#saveState.active-modal, #loadState.active-modal, #saves.active-modal {
 	top: 50%;
 	opacity: 1;
 }
-#saveState h6, #loadState h6 {
+#saveState h6, #loadState h6, #saves h6 {
 	font-size: 15px;
 	margin: 0;
 	font-family: "Cal Sans";
 	text-align: left;
 	margin-bottom: 20px;
 }
-#saveState button, #loadState button {
+#saveState button, #loadState button, #saves button {
 	font-size: 18px;
 	background-color: transparent;
 	width: 100%;
@@ -465,7 +465,7 @@ body:has(#game.active-pane) {
 #saveState button i, #loadState button i {
 	margin-bottom: 5px;
 }
-#saveState button:hover, #loadState button:hover {
+#saveState button:hover, #loadState button:hover, #saves button:hover {
 	background-color: rgba(255, 255, 255, 0.08);
 }
 #saveState button span, #loadState button span {
@@ -487,6 +487,18 @@ body:has(#game.active-pane) {
 }
 #saveState button.loading *:not(span, span *), #loadState button.loading *:not(span, span *) {
 	opacity: 0;
+}
+#saves button:not(#saves button:nth-last-of-type(1)) {
+	margin-bottom: 5px;
+}
+#saves button:not(#saves button:nth-of-type(1)) {
+	margin-top: 5px;
+}
+#saves button {
+	text-align: left;
+}
+#saves button strong {
+	margin-left: 15px;
 }
 
 
