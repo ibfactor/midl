@@ -1,3 +1,41 @@
+async function showSaves(game) {
+	const username = localStorage.getItem("username");
+	const password = localStorage.getItem("password");
+	if (!username || !password) {
+		return;
+	}
+
+	const f0 = await fetch("/api/get_saves", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			"user": username,
+			"pass": password,
+			"game": game
+		})
+	});
+
+	const f1 = await f0.json();
+
+	if (!f1.success) {
+		showToast("Failure", f1.msg);
+		return;
+	}
+
+	document.getElementById("loadState").classList.remove("active-modal");
+	cloudBtnUP.classList.remove("loading");
+	document.getElementById("saves").classList.add("active-modal");
+	document.getElementById("options").innerHTML = "";
+	f1.msg.forEach((item, index) => {
+		document.getElementById("options").innerHTML += `<button onclick="handleCloudLoad('${btoa(item)}');"><i class="fas fa-floppy-disk"></i><strong>Save ${index + 1}</strong></button>`;
+	});
+	if (f1.msg.length < 1) {
+		document.getElementById("options").innerHTML = "You haven't saved anything yet!";
+	}
+}
+
 async function sendSave(state, game) {
 	const username = localStorage.getItem("username");
 	const password = localStorage.getItem("password");
@@ -126,5 +164,6 @@ if (localStorage.getItem("username") && localStorage.getItem("password")) {
 		showAccountPage();
 	});
 	document.querySelectorAll("#saveState button")[0].style.display = "block";
+	document.querySelectorAll("#loadState button")[0].style.display = "block";
 }
 

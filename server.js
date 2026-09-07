@@ -15,8 +15,54 @@ app.use(["/server.js", "/package.json", "package-lock.json", "/databases", "/dec
     res.status(403).send("Access Denied");
 });
 
+app.post("/api/get_saves", async (req, res) => {
+    const body = req.body;
 
-app.post("/api/save_state", (req, res) => {
+    var response = {
+        success: false,
+        msg: "Invalid username or password."
+    };
+
+    if (!body.user || !body.pass) {
+        res.status(400).json(response);
+        return;
+    }
+
+    if (!db.data[body.user]) {
+        res.status(401).json(response);
+        return;
+    }
+
+    if (db.data[body.user].password != sha256(body.pass)) {
+        res.status(400).json(response);
+        return;
+    }
+
+    if (!body.game) {
+        response = {
+            success: false,
+            msg: "Nothing to load!"
+        };
+        res.status(201).json(response);
+        return;
+    }
+
+    if (!saves_db.data[body.user]) {
+        saves_db.data[body.user] = {};
+    }
+    if (!saves_db.data[body.user][body.game]) {
+        saves_db.data[body.user][body.game] = [];
+    }
+    
+    response = {
+        success: true,
+        msg: saves_db.data[body.user][body.game]
+    };
+
+    res.status(200).json(response); 
+});
+
+app.post("/api/save_state", async (req, res) => {
     const body = req.body;
 
     var response = {
@@ -50,14 +96,13 @@ app.post("/api/save_state", (req, res) => {
 
     if (!saves_db.data[body.user]) {
         saves_db.data[body.user] = {};
-        saves_db.data[body.game] = [];
     }
     if (!saves_db.data[body.user][body.game]) {
         saves_db.data[body.user][body.game] = [];
     }
     saves_db.data[body.user][body.game].push(body.state);
 
-    await db.write();
+    await saves_db.write();
 
     response = {
         success: true,

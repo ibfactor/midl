@@ -83,6 +83,28 @@ downloadBtn.addEventListener("click", () => {
 	}, 1000);
 });
 
+async function handleCloudSave() {
+	await sendSave(JSON.stringify(localStorage), window.currentItem);
+	localStorage.clear();
+	playerFrame.removeEventListener("load", handleCloudSave);
+
+	document.querySelector("#player iframe").contentWindow.player.load({
+	    url: "https://cdn.midl.ibfr.org/" + window.currentItem,
+	    allowScriptAccess: false
+	});
+
+	cloudBtn.classList.remove("loading");
+	document.getElementById("saveState").classList.remove("active-modal");
+}
+
+cloudBtn.addEventListener("click", () => {
+	cloudBtn.classList.add("loading");
+	setTimeout(() => {
+			playerFrame.contentWindow.location.reload();
+			playerFrame.addEventListener("load", handleCloudSave);
+	}, 1000);
+});
+
 const cloudBtnUP = document.getElementById("loadState").querySelectorAll("button")[0];
 const uploadBtn = document.getElementById("loadState").querySelectorAll("button")[1];
 
@@ -124,10 +146,52 @@ function handleLoad(event) {
 	  const text = reader.readAsText(event.target.files[0]);
 }
 
+function handleCloudLoad(txt) {
+			var text = atob(txt);
+	  	document.querySelector("#player iframe").addEventListener("load", () => {
+		  	const ls = JSON.parse(text);
+		  	Object.keys(ls).forEach((key) => {
+		  		localStorage.setItem(key, ls[key]);
+		  	});
+				setTimeout(() => {
+						uploadBtn.classList.remove("loading");
+						document.getElementById("loadState").classList.remove("active-modal");
+				}, 1000);
+				document.querySelector("#player iframe").contentWindow.player.load({
+				    url: "https://cdn.midl.ibfr.org/" + window.currentItem,
+				    allowScriptAccess: false
+				});
+				playpause_btn.click();
+			});
+	  	document.querySelector("#player iframe").contentWindow.location.reload();
+	  	document.querySelector("#player iframe").removeEventListener("load", () => {
+		  	const ls = JSON.parse(text);
+		  	Object.keys(ls).forEach((key) => {
+		  		localStorage.setItem(key, ls[key]);
+		  	});
+				setTimeout(() => {
+						uploadBtn.classList.remove("loading");
+						document.getElementById("loadState").classList.remove("active-modal");
+				}, 1000);
+				document.querySelector("#player iframe").contentWindow.player.load({
+				    url: "https://cdn.midl.ibfr.org/" + window.currentItem,
+				    allowScriptAccess: false
+				});
+				playpause_btn.click();
+  	});
+	  document.getElementById("saves").classList.add("active-modal");
+}
+
 uploadBtn.addEventListener("click", () => {
 	uploadBtn.classList.add("loading");
 	document.getElementById("fileInput").click();
 });
+
+cloudBtnUP.addEventListener("click", () => {
+	cloudBtnUP.classList.add("loading");
+	showSaves(window.currentItem);
+});
+
 
 document.getElementById("fileInput").addEventListener("change", handleLoad);
 
