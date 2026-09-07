@@ -575,7 +575,7 @@ h3 {
 	transition: all 0.2s;
 	margin-bottom: 20px;
 }
-input {
+input:not(#search input) {
 	width: calc(100% - 20px);
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 5px;
@@ -584,10 +584,10 @@ input {
 	font-size: 18px;
 	transition: all 0.2s;
 }
-input:focus {
+input:not(#search input):focus {
 	outline: 0;
 }
-input + label {
+input:not(#search input) + label {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -596,14 +596,14 @@ input + label {
 	pointer-events: none;
 	transition: all 0.2s;
 }
-input:focus + label, input:not(input:placeholder-shown) + label {
+input:not(#search input):focus + label, input:not(input:placeholder-shown, #search input) + label {
 	top: 0px;
 	left: 0;
 }
 .input_group:has(input:focus, input:not(input:placeholder-shown)) {
 	padding-top: 10px;
 }
-input::placeholder {
+input:not(#search input)::placeholder {
 	opacity: 0;
 }
 

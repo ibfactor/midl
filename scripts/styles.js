@@ -13,6 +13,8 @@ document.getElementById("home_button").addEventListener("click", () => {
 	setTimeout(() => {
 		document.getElementById("loading_screen").classList.remove("active");
 		document.getElementById("game").classList.remove("active-pane");
+		document.getElementById("account").classList.remove("active-pane");
+		document.getElementById("my_account").classList.remove("active-pane");
 		document.getElementById("top").innerText = "";
 
 		document.querySelector("#player iframe").contentWindow.location.reload();
