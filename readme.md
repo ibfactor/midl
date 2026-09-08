@@ -10,9 +10,14 @@
 - Downloading and loading of game save files
 - Search function
 - ANIMATIONS!
+- Cloud save file storage
+- Accounts system
+- Leaderboard (with custom MIDL points)
+- Player controls (play, pause fullscreen)
+- Security (popup blocking)
+- You can now upload your own SWF file!
 ### Planned Features
-  - Saving game state (as it is)
-  - Cloud storage functionality
+  - Game snapshot as a save file
   - Emulators!
 ### Note Regarding Games
 All games were taken from InternetArchive, effort was made to ensure no site locked games were included (no site locks were bypassed).
@@ -27,6 +32,7 @@ Then install the required NPM packages and run the server.
 npm install && npm run start
 ```
 By default, the server will launch at `http://localhost:8088`, you can change the port in `server.js`, but that is not recommended, as the MIDL cdn only allows CORS headers for the `8088` port.\
+\
 To host your own public instance, you will have to store the game SWF files yourself, as the website currently fetches it from its own CDN (not present in the GitHub repo).
 ### File Structure
 | Folder  | Type/Purpose                                        |
