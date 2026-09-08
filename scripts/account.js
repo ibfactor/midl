@@ -34,7 +34,12 @@ async function getAccount() {
 				const json = JSON.parse(item);
 				Object.keys(json).forEach((itemKey) => {
 					if (itemKey.includes("/" + key)) {
-						const data = parseSOLFromBase64(json[itemKey]).data;
+						try {
+							const data = parseSOLFromBase64(json[itemKey]).data;
+						}
+						catch (err) {
+							return;
+						}
 						Object.keys(data).forEach((final) => {
 							const item = data[final];
 							const lowerCaseItem = final.toLowerCase();
