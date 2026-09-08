@@ -270,7 +270,9 @@ app.post("/api/account_new", async (req, res) => {
     res.status(200).json(response); 
 });
 
-app.use(express.static(import.meta.dirname));
+app.use(express.static(import.meta.dirname, {
+    extensions: ["html"]
+}));
 
 app.listen(PORT, () => {
     console.log("Server is running on http://localhost:" + PORT);
