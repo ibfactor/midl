@@ -25,7 +25,7 @@ All games were taken from InternetArchive, effort was made to ensure no site loc
 MIDL runs on NodeJS Express & LowDB.\
 You can clone this repository.
 ```
-git clone https://github.com/ibfactor/midl.git
+git clone https://github.com/ibfactor/midl.git && cd midl
 ```
 Then install the required NPM packages and run the server.
 ```
