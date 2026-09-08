@@ -56,6 +56,7 @@ app.get("/api/leaderboard", async (req, res) => {
             });
         });
         if (Math.max(...userHighScore) == 1) return;
+        if (typeof Math.max(...userHighScore) == "undefined") return;
         finalGameResponse.push({
             "user": user,
             "score": Math.max(...userHighScore)
