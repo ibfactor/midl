@@ -531,6 +531,12 @@ a:hover {
 	padding-bottom: 0px;
 	z-index: 5;
 }
+body:has(#game.active-pane) #tag {
+	top: 20px;
+	right: 20px;
+	bottom: auto;
+}
+
 #tag span {
 	position: absolute;
 	top: 50%;
@@ -670,6 +676,7 @@ input:not(#search input)::placeholder {
 
 #my_account {
 	padding-left: 20px;
+	overflow-y: scroll;
 }
 
 #save_files, #high_scores {

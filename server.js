@@ -52,10 +52,10 @@ app.get("/api/leaderboard", async (req, res) => {
                         });
                     }
                 });
-
                 userHighScore.push(thisGameScore);
             });
         });
+        if (Math.max(...userHighScore) == 1) return;
         finalGameResponse.push({
             "user": user,
             "score": Math.max(...userHighScore)

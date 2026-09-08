@@ -10,7 +10,7 @@ function showToast(title, msg) {
 }
 
 function render(r1, r3) {
-	r1.forEach((item) => {
+	r1.forEach((item, index) => {
 		var img_link = "";
 		r3.forEach((img) => {
 			if (img.split(".")[0].toLowerCase() == item.name.split(".")[0].toLowerCase()) {
@@ -21,10 +21,46 @@ function render(r1, r3) {
 		const elem = document.createElement("div");
 
 		elem.classList.add("game-icon");
-		elem.setAttribute("data-id", item.title)
+		elem.setAttribute("data-id", item.title);
 		elem.innerHTML = `<p>${item.title}</p><p></p><p style="background-image:url('/images/${img_link}');"></p>`;
 
 		document.getElementById("content").appendChild(elem);
+
+		if (r1.length == (index + 1)) {
+			const elem2 = document.createElement("div");
+			elem2.classList.add("game-icon");
+			elem2.setAttribute("data-id", "custom");
+			elem2.innerHTML = `<p>Upload your own .SWF</p><p></p><p style="background-image:url('/images/yourowngame.png');"></p>`;
+			document.getElementById("content").appendChild(elem2);
+			elem2.addEventListener("click", async () => {
+				document.getElementById("fileInput2").click();
+			});
+			document.getElementById("fileInput2").addEventListener("change", async () => {
+				const fileBlob = event.target.files[0];
+				if (!fileBlob) return;
+				const blobUrl = URL.createObjectURL(fileBlob);
+				elem2.classList.add("active-game");
+				document.getElementById("loading_screen").classList.add("active");
+				window.currentItem = fileBlob.name;
+				document.querySelector("#player iframe").contentWindow.player.load({
+				    url: blobUrl,
+				    allowScriptAccess: false
+				});
+				await new Promise((resolve) => {
+	                const handler = (event) => {
+	                    if (event.data?.type === "ruffle-loaded") {
+	                        window.removeEventListener("message", handler);
+	                        resolve();
+	                    }
+	                };
+
+	                window.addEventListener("message", handler);
+	            });
+	            document.getElementById("loading_screen").classList.remove("active");
+				document.getElementById("game").classList.add("active-pane");
+				document.getElementById("top").innerText = fileBlob.name + " (custom)";
+			});
+		}
 
 		elem.addEventListener("click", async () => {
 			elem.classList.add("active-game");
