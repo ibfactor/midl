@@ -257,3 +257,20 @@ leaderboard_btn.addEventListener("click", async () => {
 	});
 });
 
+
+setInterval(() => {
+	try {
+		if ((document.querySelector(".active-pane") && document.querySelector(".active-pane").id != "game") || !document.querySelector(".active-pane")) {
+			const plr = document.querySelector("iframe").contentWindow.player;
+			if (plr.isPlaying) {
+				if (document.getElementById("playpause_btn").innerText == "Play") {
+					document.getElementById("playpause_btn").click();
+				}
+				plr.play();
+			}
+		}
+	}
+	catch (err) {
+		console.warn(err);
+	}
+}, 500);

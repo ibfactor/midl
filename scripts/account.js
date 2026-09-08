@@ -129,6 +129,8 @@ async function sendSave(state, game, username, password) {
 function showAccountPage() {
 	document.getElementById("account").classList.remove("active-pane");
 	document.getElementById("loading_screen").classList.add("active");
+	document.getElementById("game").classList.remove("active-pane");
+
 	setTimeout(() => {
 		document.getElementById("my_account").classList.add("active-pane");
 		document.getElementById("loading_screen").classList.remove("active");
