@@ -36,19 +36,20 @@ async function getAccount() {
 					if (itemKey.includes("/" + key)) {
 						try {
 							const data = parseSOLFromBase64(json[itemKey]).data;
+						
+							Object.keys(data).forEach((final) => {
+								const item = data[final];
+								const lowerCaseItem = final.toLowerCase();
+								if (lowerCaseItem.includes("highscore") || lowerCaseItem.includes("high score") || lowerCaseItem.includes("score") || lowerCaseItem.includes("level") || lowerCaseItem.includes("star")) {
+									if (!Number.isFinite(item)) return;
+									if (item == 0) return;
+									thisGameScore *= item;
+								}
+							});
 						}
 						catch (err) {
-							return;
+							console.warn(err);
 						}
-						Object.keys(data).forEach((final) => {
-							const item = data[final];
-							const lowerCaseItem = final.toLowerCase();
-							if (lowerCaseItem.includes("highscore") || lowerCaseItem.includes("high score") || lowerCaseItem.includes("score") || lowerCaseItem.includes("level") || lowerCaseItem.includes("star")) {
-								if (!Number.isFinite(item)) return;
-								if (item == 0) return;
-								thisGameScore *= item;
-							}
-						});
 					}
 				});
 				scores.push(thisGameScore);
