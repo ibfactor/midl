@@ -15,7 +15,7 @@ body {
 	top: 10px;
 	left: 10px;*/
 
-	top: 10px;
+	top: 9px;
 	position: sticky;
 	z-index: 6;
 
@@ -36,7 +36,7 @@ body {
 	width: 100px;
 	height: calc(100px - 10px);
 
-	margin-left: 5px;
+	margin-left: 4px;
 	margin-bottom: 10px;
 }
 #main > h3 {
@@ -54,6 +54,9 @@ body {
 	transition: 0.25s all;
 	padding-top: 5px;
 	padding-bottom: 5px;
+}
+#main button {
+	width: calc(50% - 2px);
 }
 #main > button:nth-of-type(1) {
 	border-right: 1px solid rgba(32, 95, 115, 0.5);
@@ -87,25 +90,25 @@ body {
 	transition: transform 0s, opacity 0.2s;
 }
 #banner.hovered {
-	transform: translate( calc(-100vw + 100% + 20px), calc(100vh - 100% - 20px));
+	transform: translate(calc(-100vw + 100% + 20px), calc(100vh - 100% - 20px));
 }
 #banner * {
 	font-family: "Cal Sans";
 }
 
-
-#content {
-	text-align: left;
-	margin-left: auto;
-	margin-right: auto;
-	width: auto;
-}
 /*.game-icon:nth-of-type(1) {
 	margin-left: 110px;
 }*/
+#main, .game-icon:nth-of-type(1), .game-icon:nth-of-type(2), .game-icon:nth-of-type(3), .game-icon:nth-of-type(4), .game-icon:nth-of-type(5), .game-icon:nth-of-type(6), .game-icon:nth-of-type(7) {
+	width: calc(11vw - 13px);
+	min-width: 100px;
+}
 .game-icon {
-	width: 100px;
+	/*width: 100px;
+	height: 100px;*/
+	width: calc(11vw - 13px);
 	height: 100px;
+	min-width: 100px;
 	border-radius: 5px;
 	position: relative;
 	display: inline-block;
@@ -120,6 +123,7 @@ body {
 	vertical-align: middle;
 	text-align: center;
 }
+
 .game-icon p:nth-of-type(3) {
 	position: absolute;
 	top: -20px;
