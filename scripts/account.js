@@ -1,3 +1,65 @@
+async function getAccount() {
+	const username = localStorage.getItem("username");
+	const password = localStorage.getItem("password");
+	if (!username || !password) {
+		return;
+	}
+
+	const f0 = await fetch("/api/account_get", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			"user": username,
+			"pass": password,
+			"game": game
+		})
+	});
+
+	const f1 = await f0.json();
+
+	if (!f1.success) {
+		showToast("Failure", f1.msg);
+		return;
+	}
+
+	if (Object.keys(f1.msg).length > 0) {
+		document.getElementById("save_files").innerHTML = "";
+		Object.keys(f1.msg).forEach((key) => {
+			var scores = [];
+			document.getElementById("save_files").innerHTML += `<div class="gameSaveAcc" onclick="document.getElementById('my_account').classList.remove('active-pane');document.querySelector('[data-id=\\'${window.db.find(item => item.name === key).title}\\']').click();">${window.db.find(item => item.name === key).title}<br><span>${f1.msg[key].length} save files</span></div>`;
+			f1.msg[key].forEach((item) => {
+				var thisGameScore = 1;
+				const json = JSON.parse(item);
+				Object.keys(json).forEach((itemKey) => {
+					if (itemKey.includes("/" + key)) {
+						const data = parseSOLFromBase64(json[itemKey]).data;
+						Object.keys(data).forEach((final) => {
+							const item = data[final];
+							const lowerCaseItem = final.toLowerCase();
+							if (lowerCaseItem.includes("highscore") || lowerCaseItem.includes("high score") || lowerCaseItem.includes("score") || lowerCaseItem.includes("level") || lowerCaseItem.includes("star")) {
+								if (!Number.isFinite(item)) return;
+								if (item == 0) return;
+								thisGameScore *= item;
+							}
+						});
+					}
+				});
+				scores.push(thisGameScore);
+			});
+			if (scores.length > 0) {
+				const maxScore = Math.max(...scores);
+				if (!document.getElementById("high_scores").innerHTML.includes("gameSaveAcc")) {
+					document.getElementById("high_scores").innerHTML = "";
+				}
+				document.getElementById("high_scores").innerHTML += `<div class="gameSaveAcc" onclick="document.getElementById('my_account').classList.remove('active-pane');document.querySelector('[data-id=\\'${window.db.find(item => item.name === key).title}\\']').click();">${window.db.find(item => item.name === key).title}<br><span>Max Score: ${maxScore} MP</span></div>`;
+			}
+		});
+	}
+}
+
+
 async function showSaves(game) {
 	const username = localStorage.getItem("username");
 	const password = localStorage.getItem("password");
@@ -36,9 +98,7 @@ async function showSaves(game) {
 	}
 }
 
-async function sendSave(state, game) {
-	const username = localStorage.getItem("username");
-	const password = localStorage.getItem("password");
+async function sendSave(state, game, username, password) {
 	if (!username || !password) {
 		return;
 	}
@@ -74,6 +134,7 @@ function showAccountPage() {
 		document.getElementById("loading_screen").classList.remove("active");
 	}, 1000);
 	document.getElementById("username_txt").innerText = localStorage.getItem("username");
+	getAccount();
 }
 
 async function processSignUp(username, password) {

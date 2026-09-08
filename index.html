@@ -33,7 +33,7 @@
 				<h6 id="top"></h6>
 				<iframe src="/player"></iframe>
 				<div id="controls">
-					<button id="playpause_btn"><i class="fas fa-pause"></i>&nbsp;&nbsp;<span id="playpause_text">Pause</span></button><button id="fullscreen_btn"><i class="fas fa-expand"></i>&nbsp;&nbsp;Fullscreen</button><button id="load_btn"><i class="fas fa-download"></i>&nbsp;&nbsp;Load Save</button><button id="save_btn"><i class="fas fa-upload"></i>&nbsp;&nbsp;Save</button>
+					<button id="playpause_btn"><i class="fas fa-pause"></i>&nbsp;&nbsp;<span id="playpause_text">Pause</span></button><button id="fullscreen_btn"><i class="fas fa-expand"></i>&nbsp;&nbsp;Fullscreen</button><button id="leaderboard_btn"><i class="fas fa-ranking-star"></i>&nbsp;&nbsp;Leaderboard</button><button id="load_btn"><i class="fas fa-download"></i>&nbsp;&nbsp;Load Save</button><button id="save_btn"><i class="fas fa-upload"></i>&nbsp;&nbsp;Save</button>
 				</div>
 			</div>
 
@@ -55,6 +55,15 @@
 			<div id="saves">
 				<h6>Choose a State</h6>
 				<div id="options"></div>
+				<a onclick="this.parentElement.classList.remove('active-modal');">&times;</a>
+			</div>
+
+			<div id="ldrboard">
+				<h6>Leaderboard</h6>
+				<p>MIDL uses custom scores (MIDL points) which are not the same as in-game scores.<br><br>In order to get your score to show here, you need to store a save file in the cloud (by logging in, if you haven't done it already)</p>
+				<div id="ldrboard_sc">
+					<ol></ol>
+				</div>
 				<a onclick="this.parentElement.classList.remove('active-modal');">&times;</a>
 			</div>
 		</div>
@@ -81,11 +90,15 @@
 
 		<div id="my_account"><br><br><br><br><br><br>
 			<h2>Welcome back, <span id="username_txt"></span>!</h2>
+			<p>This is where you can see your max scores and which games you have played. Click on any game to launch it (you will have to load your save file when it launches yourself!).</p>
+			<p>MP (MIDL points) are based on our super secret algorithm (check our <a href="https://github.com/ibfactor/midl" target="_blank">GitHub</a> if you're interested), and are different from in-game points. They also differ per game.</p>
+			<h3>My save files</h3>
 			<div id="save_files">
 				<p>Your save files will be shown here once you save something.</p>
 			</div>
+			<h3>My max scores</h3>
 			<div id="high_scores">
-				<p>Your highscores will be shown here once you log them.</p>
+				<p>Your scores will be shown here once we detect them (in save files).</p>
 			</div>
 		</div>
 
@@ -105,6 +118,7 @@
 
 		<input id="fileInput" type="file" name="file" style="opacity: 0;" />
 		
+		<script src="/scripts/parse-sol-b64-browser.js"></script>
 		<script src="/scripts/render.js"></script>
 		<script src="/scripts/styles.js"></script>
 		<script src="/scripts/player.js"></script>

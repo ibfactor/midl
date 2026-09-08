@@ -63,8 +63,29 @@ const cloudBtn = document.getElementById("saveState").querySelectorAll("button")
 const downloadBtn = document.getElementById("saveState").querySelectorAll("button")[1];
 
 function handleSave() {
+		var username = "";
+		var password = "";
+		if (localStorage.getItem("username")) {
+			username = localStorage.getItem("username");
+		}
+		if (localStorage.getItem("password")) {
+			password = localStorage.getItem("password");
+		}
+
+		localStorage.removeItem("username");
+		localStorage.removeItem("password");
+
 		download("save.midl", JSON.stringify(localStorage));
+		
 		localStorage.clear();
+
+		if (username) {
+			localStorage.setItem("username", username);
+		}
+		if (password) {
+			localStorage.setItem("password", password);
+		}
+
 		playerFrame.removeEventListener("load", handleSave);
 
 		document.querySelector("#player iframe").contentWindow.player.load({
@@ -84,8 +105,29 @@ downloadBtn.addEventListener("click", () => {
 });
 
 async function handleCloudSave() {
-	await sendSave(JSON.stringify(localStorage), window.currentItem);
+	var username = "";
+	var password = "";
+	if (localStorage.getItem("username")) {
+		username = localStorage.getItem("username");
+	}
+	if (localStorage.getItem("password")) {
+		password = localStorage.getItem("password");
+	}
+
+	localStorage.removeItem("username");
+	localStorage.removeItem("password");
+
+	await sendSave(JSON.stringify(localStorage), window.currentItem, username, password);
+
 	localStorage.clear();
+
+	if (username) {
+		localStorage.setItem("username", username);
+	}
+	if (password) {
+		localStorage.setItem("password", password);
+	}
+
 	playerFrame.removeEventListener("load", handleCloudSave);
 
 	document.querySelector("#player iframe").contentWindow.player.load({
@@ -194,4 +236,24 @@ cloudBtnUP.addEventListener("click", () => {
 
 
 document.getElementById("fileInput").addEventListener("change", handleLoad);
+
+
+const leaderboard_btn = document.getElementById("leaderboard_btn");
+
+leaderboard_btn.addEventListener("click", async () => {
+	document.getElementById("ldrboard").classList.add("active-modal");
+	const f0 = await fetch("/api/leaderboard?game=" + window.currentItem);
+	const f1 = await f0.json();
+
+	if (!f1.success) {
+		showToast("Failure", f1.msg);
+		return;
+	}
+
+	document.querySelector("#ldrboard_sc ol").innerHTML = "";
+
+	f1.msg.sort((a, b) => b.score - a.score).forEach((item) => {
+			document.querySelector("#ldrboard_sc ol").innerHTML += `<li>${item.user} (${item.score} MP)</li>`;
+	});
+});
 
